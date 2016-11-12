@@ -1,0 +1,6 @@
+.idea
+.vertx
+target
+java.vertx.iml
+java.vertx.ipr
+java.vertx.iws
