@@ -16,3 +16,19 @@
 进入 target 目录
 
 java -jar <jar-name>-fat.jar
+
+## 日志
+
+### 系统内日志框架
+
+src/main/resources 目录下放置 vertx-default-jul-logging.properties 文件   JUL 标准
+
+### Log4j
+
+jar包放到classpath下， src/main/resources 下放置log4j配置文件 
+
+```
+java.util.logging.ConsoleHandler.level=INFO
+java.util.logging.FileHandler.level=INFO
+```
+

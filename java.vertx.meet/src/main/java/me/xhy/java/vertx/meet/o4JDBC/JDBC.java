@@ -27,6 +27,8 @@ public class JDBC extends AbstractVerticle {
 	@Override
 	public void start(Future<Void> fut) {
 
+		System.out.println(Thread.currentThread().getName());
+
 		// Create a JDBC client
 		jdbc = JDBCClient.createShared(vertx, new JsonObject()
 				.put("url", "jdbc:oracle:thin:@10.6.10.165:1521/mms")
