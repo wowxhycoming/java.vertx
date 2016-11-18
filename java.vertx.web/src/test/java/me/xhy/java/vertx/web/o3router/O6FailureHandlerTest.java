@@ -52,6 +52,7 @@ public class O6FailureHandlerTest {
 					response.handler(body -> {
 						context.assertTrue(true);
 						System.out.println(response.statusCode());
+						System.out.println(body.toString());
 						async.complete();
 					});
 				});
