@@ -38,7 +38,7 @@ public class O5SubRouterOrder extends AbstractVerticle {
 
 		router.route("/path/sub").order(-1).handler(new Router4Handler());
 
-		router.route("/path/*").order(-2).handler(new Router4Handler());
+		router.route("/path/*").order(-2).handler(new Router5Handler());
 
 		router.route("/path/*").last().handler(new EndHandler());
 

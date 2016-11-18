@@ -18,7 +18,7 @@ public class SubRouter3Handler implements Handler<RoutingContext> {
 
 	@Override
 	public void handle(final RoutingContext event) {
-		System.out.println("[SubRouter 3]" + Thread.currentThread().getName());
+		System.out.println("[SubRouter 3]" + name + Thread.currentThread().getName());
 		event.next();
 	}
 }
