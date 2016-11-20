@@ -29,10 +29,10 @@ public class MessageHandler implements Handler<RoutingContext> {
 				if (ret) {
 					routingContext.response().end(String.valueOf(ret));
 				} else {
-					Future.failedFuture("error 2");
+					Future.failedFuture("User Processing Met Issue.");
 				}
 			} else {
-				Future.failedFuture("error 1");
+				Future.failedFuture("Handler internal error");
 			}
 		});
 	}
