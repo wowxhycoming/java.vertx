@@ -10,7 +10,7 @@ import org.apache.commons.configuration.PropertiesConfiguration;
 /**
  * Created by xuhuaiyu on 2016/11/20.
  */
-public class Util {
+public class Options {
 
 	private static Configuration LOADER;
 	private static String VX_FREFIX = "vertx.";
@@ -21,7 +21,7 @@ public class Util {
 	}
 
 	@NotNull
-	public static VertxOptions readOpts(@NotNull String name) {
+	public static VertxOptions verticleDeploymentOptions(@NotNull String name) {
 		final String VX_PREFIX_AND_NAME = VX_FREFIX + name;
 		final VertxOptions opts = new VertxOptions();
 
@@ -78,7 +78,7 @@ public class Util {
 		return opts;
 	}
 
-	public static DeploymentOptions readOpts() {
+	public static DeploymentOptions verticleDeploymentOptions() {
 
 		final DeploymentOptions opts = new DeploymentOptions();
 
@@ -94,6 +94,18 @@ public class Util {
 		Worker Verticles
 		Multi-threaded Worker Verticles（并行应用，超过一个线程执行该应用）
 		*/
+
+		return opts;
+	}
+
+	public static DeploymentOptions workerDeploymentOptions() {
+
+		final DeploymentOptions opts = new DeploymentOptions();
+
+		opts.setHa(true);
+		opts.setInstances(100);
+		opts.setWorker(true);
+		opts.setMultiThreaded(false); // 默认是false，仅为演示
 
 		return opts;
 	}
