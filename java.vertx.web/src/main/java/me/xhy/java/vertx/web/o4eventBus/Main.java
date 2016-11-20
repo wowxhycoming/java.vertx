@@ -17,7 +17,7 @@ public class Main {
 		final Vertx vertx = vertxFactory.vertx(vertxOptions);
 
 		// 发布 standard 类型的 verticle
-		vertx.deployVerticle(MessageHandler.class.getName(), Options.verticleDeploymentOptions());
+		vertx.deployVerticle(RouterVerticle.class.getName(), Options.verticleDeploymentOptions());
 
 		// 发布 worker 类型的 verticle
 		vertx.deployVerticle(UserWorker.class.getName(), Options.workerDeploymentOptions());

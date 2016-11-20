@@ -10,20 +10,20 @@ import io.vertx.ext.web.Router;
  */
 public class RouterVerticle extends AbstractVerticle {
 
-    @Override
-    public void start(final Future future) {
-        final HttpServer server = vertx.createHttpServer();
+	@Override
+	public void start(final Future future) {
+		final HttpServer server = vertx.createHttpServer();
 
-        Router router = Router.router(vertx);
-        router.route("/path/:mame/:email").handler(new MessageHandler());
+		Router router = Router.router(vertx);
+		router.route("/path/:name/:email").handler(new MessageHandler());
 
-        server.requestHandler(router::accept)
-                .listen(config().getInteger("http.port", 10018), result -> {
-            if(result.succeeded()) {
-                future.complete();
-            } else {
-                future.fail(result.cause());
-            }
-        });
-    }
+		server.requestHandler(router::accept)
+				.listen(config().getInteger("http.port", 10018), result -> {
+					if (result.succeeded()) {
+						future.complete();
+					} else {
+						future.fail(result.cause());
+					}
+				});
+	}
 }
