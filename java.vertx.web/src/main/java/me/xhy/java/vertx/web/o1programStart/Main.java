@@ -19,12 +19,6 @@ public class Main {
 
 	public static void main(final String... args) {
 
-		try {
-			Util.loadProperties();
-		} catch (ConfigurationException e) {
-			e.printStackTrace();
-		}
-
 		System.out.println(Router.class.getName());
 		System.out.println(Runtime.getRuntime().availableProcessors());
 

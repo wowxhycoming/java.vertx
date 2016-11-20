@@ -26,12 +26,6 @@ public class ClusterStarter {
 
 	public static void main(final String... args) {
 
-		try {
-			Util.loadProperties();
-		} catch (ConfigurationException e) {
-			e.printStackTrace();
-		}
-
 		System.out.println(Runtime.getRuntime().availableProcessors());
 
 		// 读取配置

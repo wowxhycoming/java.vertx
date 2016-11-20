@@ -25,6 +25,12 @@ public class Util {
 		final String VX_PREFIX_AND_NAME = VX_FREFIX + name;
 		final VertxOptions opts = new VertxOptions();
 
+		try {
+			loadProperties();
+		} catch (ConfigurationException e) {
+			e.printStackTrace();
+		}
+
 		// Pool Size Configuration
 		// setEventLoopPoolSize 设置Vert.x实例使用的Event Loop线程的数量，默认值为：2 * Runtime.getRuntime().availableProcessors()（可用的处理器个数）
 		opts.setEventLoopPoolSize(LOADER.getInt(VX_PREFIX_AND_NAME + "pool.size.event.loop"));
