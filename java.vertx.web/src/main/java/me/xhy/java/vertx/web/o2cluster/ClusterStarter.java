@@ -26,7 +26,7 @@ public class ClusterStarter {
 		System.out.println(Runtime.getRuntime().availableProcessors());
 
 		// 读取配置
-		final VertxOptions vertxOptions = Options.verticleDeploymentOptions("VXWEB.");
+		final VertxOptions vertxOptions = Options.getVertxOptions("VXWEB.");
 		final VertxFactory factory = new VertxFactoryImpl();
 
 		// 创建 cluster
@@ -39,11 +39,11 @@ public class ClusterStarter {
 			// 所以 resultHandler.result()直接返回 Vertx引用 不需要强制转换
 			if(resultHandler.succeeded()) {
 				// 从这里开始流程和单例运行的代码一致了
-//				final Vertx vertx = factory.vertx(verticleDeploymentOptions);
-//				final DeploymentOptions verticleOpts = verticleDeploymentOptions();
+//				final Vertx vertx = factory.vertx(standardDeploymentOptions);
+//				final DeploymentOptions verticleOpts = standardDeploymentOptions();
 //				vertx.deployVerticle(RouterVerticle.class.getName(), verticleOpts);
 				final Vertx vertx = resultHandler.result();
-				final DeploymentOptions verticleOpts = Options.verticleDeploymentOptions();
+				final DeploymentOptions verticleOpts = Options.standardDeploymentOptions();
 				vertx.deployVerticle(RouterVerticle.class.getName(), verticleOpts);
 			}
 		});

@@ -18,10 +18,10 @@ public class Main {
 		System.out.println(Router.class.getName());
 		System.out.println(Runtime.getRuntime().availableProcessors());
 
-		final VertxOptions vertxOptions = Options.verticleDeploymentOptions("VXWEB.");
+		final VertxOptions vertxOptions = Options.getVertxOptions("VXWEB.");
 		final VertxFactory factory = new VertxFactoryImpl();
 		final Vertx vertx = factory.vertx(vertxOptions);
-		final DeploymentOptions verticleOpts = Options.verticleDeploymentOptions();
+		final DeploymentOptions verticleOpts = Options.standardDeploymentOptions();
 		vertx.deployVerticle(RouterVerticle.class.getName(), verticleOpts);
 
 	}

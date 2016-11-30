@@ -21,7 +21,7 @@ public class Options {
 	}
 
 	@NotNull
-	public static VertxOptions verticleDeploymentOptions(@NotNull String name) {
+	public static VertxOptions getVertxOptions(@NotNull String name) {
 		final String VX_PREFIX_AND_NAME = VX_FREFIX + name;
 		final VertxOptions opts = new VertxOptions();
 
@@ -78,7 +78,7 @@ public class Options {
 		return opts;
 	}
 
-	public static DeploymentOptions verticleDeploymentOptions() {
+	public static DeploymentOptions standardDeploymentOptions() {
 
 		final DeploymentOptions opts = new DeploymentOptions();
 
@@ -88,7 +88,8 @@ public class Options {
 		opts.setMultiThreaded(false); // 默认是false，仅为演示
 
 		/*
-		因为RouterVerticle是一个Standard的类型，这里提供常用的关于Verticle的选项设置，其余的配置项可参考DeploymentOptions类的源代码查看，从Vert.x 3.0开始，Verticle类型从2.0的两种（Standard、Worker）升级成了三种：
+		因为RouterVerticle是一个Standard的类型，这里提供常用的关于Verticle的选项设置，其余的配置项可参考DeploymentOptions类的源代码查看，
+		从Vert.x 3.0开始，Verticle类型从2.0的两种（Standard、Worker）升级成了三种：
 
 		Standard Verticles
 		Worker Verticles
