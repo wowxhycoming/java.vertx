@@ -12,6 +12,7 @@
 	<modules>
 		<module>java.vertx.meet</module>
 		<module>java.vertx.web</module>
+		<module>java.vertx.microservice</module>
 	</modules>
 
 	<dependencies>

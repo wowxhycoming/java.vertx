@@ -16,6 +16,7 @@ public class UserWorker extends AbstractVerticle {
 
 		// 读取Message
 		bus.<JsonObject>consumer("MSG://QUEUE/USER", caller -> {
+			System.out.println("consumer === " + Thread.currentThread().getName());
 			final JsonObject data = caller.body();
 
 			final User user = new User().toUser(data);

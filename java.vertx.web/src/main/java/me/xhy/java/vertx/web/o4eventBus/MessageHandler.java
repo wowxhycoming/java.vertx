@@ -24,6 +24,7 @@ public class MessageHandler implements Handler<RoutingContext> {
 		// 获取EventBus
 		final EventBus bus = routingContext.vertx().eventBus();
 		bus.<Boolean>send("MSG://QUEUE/USER", user.tojson(), messageAsyncResult -> {
+			System.out.println("publish === " + Thread.currentThread().getName());
 			if (messageAsyncResult.succeeded()) {
 				final boolean ret = messageAsyncResult.result().body();
 				if (ret) {
