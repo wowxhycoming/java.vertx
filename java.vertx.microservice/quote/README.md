@@ -1,0 +1,1 @@
+在 java.vertx.microservice 层打包， 配置文件放到jar同目录。
