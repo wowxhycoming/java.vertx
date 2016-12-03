@@ -61,7 +61,7 @@ ServerSocket socket = new ServerSocket(0);
 
 在生产环境中，随机端口并不是我们想要的。所以，在实际执行应用的时候，我们需要将配置写在一个外部的文件里。这个配置的文件使用json格式。
 
-创建 my-application-conf.json，并写下这些内容：
+创建 o2UseConfig.json，并写下这些内容：
 ```
 {
     "http.port" : 8082
@@ -77,7 +77,11 @@ java -jar <jar-name> -conf <conf-name>
 ```
 在项目根目录下
 java -jar target/java.vertx-1.0-SNAPSHOT-fat.jar -conf src/main/resources/o2UseConfig.json
+
+运行没成功 -_-!!! 报错 : io.vertx.core.impl.NoStackTraceThrowable
 ```
+
+
 
 编辑完毕JSON文件后，即可重新打包运行。打开浏览器，然后访问 [http://localhost:8082](http://localhost:8082)，即可看到应用的界面。
 

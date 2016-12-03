@@ -39,8 +39,8 @@
 									<manifestEntries>
 										<Main-Class>io.vertx.core.Starter</Main-Class>
 										<!-- 最后一个生效，每次一个Verticle-->
-										<Main-Verticle>me.xhy.java.vertx.meet.o1FirstApp.MyFirstVerticle</Main-Verticle>
-										<!--<Main-Verticle>me.xhy.java.vertx.meet.o2UseConfig.UseConfig</Main-Verticle>-->
+										<!--<Main-Verticle>me.xhy.java.vertx.meet.o1FirstApp.MyFirstVerticle</Main-Verticle>-->
+										<Main-Verticle>me.xhy.java.vertx.meet.o2UseConfig.UseConfig</Main-Verticle>
 										<!--<Main-Verticle>me.xhy.java.vertx.meet.o3RESTfull.RESTfull</Main-Verticle>-->
 										<!--<Main-Verticle>me.xhy.java.vertx.meet.o4JDBC.JDBC</Main-Verticle>-->
 									</manifestEntries>
