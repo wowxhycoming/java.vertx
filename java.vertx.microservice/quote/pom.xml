@@ -19,6 +19,18 @@
 	</dependencies>
 
 	<build>
+
+		<resources>
+			<resource>
+				<targetPath>${project.build.directory}</targetPath>
+				<directory>src/main/resources</directory>
+				<filtering>true</filtering>
+				<includes>
+					<include>config.json</include>
+				</includes>
+			</resource>
+		</resources>
+
 		<plugins>
 			<plugin>
 				<artifactId>maven-compiler-plugin</artifactId>
