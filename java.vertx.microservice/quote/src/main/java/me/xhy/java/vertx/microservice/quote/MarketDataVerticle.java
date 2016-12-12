@@ -32,10 +32,9 @@ public class MarketDataVerticle extends AbstractVerticle {
 	 */
 	@Override
 	public void start() {
-		System.out.println(MarketDataVerticle.class.getName() + "===" + period + "===");
 		// Retrieve the configuration, and initialize the verticle.
 		JsonObject config = config();
-		System.out.println("config ========== \r\n" + config);
+		System.out.println("config ========== " + config);
 		init(config);
 
 		// Every `period` ms, the given Handler is called.
@@ -115,7 +114,6 @@ public class MarketDataVerticle extends AbstractVerticle {
 
 	/**
 	 * @return a json representation of the market data (quote). The structure is close to
-	 * <a href="https://en.wikipedia.org/wiki/Market_data">https://en.wikipedia.org/wiki/Market_data</a>.
 	 */
 	private JsonObject toJson() {
 		return new JsonObject()

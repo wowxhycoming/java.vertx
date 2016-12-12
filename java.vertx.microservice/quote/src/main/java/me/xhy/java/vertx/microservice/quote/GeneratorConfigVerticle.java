@@ -5,11 +5,6 @@ import io.vertx.core.json.JsonArray;
 import io.vertx.core.json.JsonObject;
 import me.xhy.java.microservice.common.MicroServiceVerticle;
 
-import java.io.File;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-
 /**
  * Created by xuhuaiyu on 2016/11/30.
  */
@@ -34,6 +29,22 @@ public class GeneratorConfigVerticle extends MicroServiceVerticle {
 		}
 
 		vertx.deployVerticle(RestQuoteAPIVerticle.class.getName(), new DeploymentOptions().setConfig(config()));
+
+		// Publish the services in the discovery infrastructure.
+		publishMessageSource("market-data", ADDRESS, rec -> {
+			if (!rec.succeeded()) {
+				rec.cause().printStackTrace();
+			}
+			System.out.println("Market-Data service published : " + rec.succeeded());
+		});
+
+		publishHttpEndpoint("quotes", "localhost", config().getInteger("http.port", 8080), ar -> {
+			if (ar.failed()) {
+				ar.cause().printStackTrace();
+			} else {
+				System.out.println("Quotes (Rest endpoint) service published : " + ar.succeeded());
+			}
+		});
 
 	}
 }
