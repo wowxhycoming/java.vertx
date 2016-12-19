@@ -72,7 +72,7 @@ public class MarketDataVerticle extends AbstractVerticle {
 	private void send() {
 		JsonObject jo = toJson();
 		System.out.println(jo);
-		vertx.eventBus().publish(GeneratorConfigVerticle.ADDRESS, jo);
+		vertx.eventBus().publish(GeneratorQuoteVerticle.ADDRESS, jo);
 		System.out.println("publish|||" + Thread.currentThread().getName());
 	}
 

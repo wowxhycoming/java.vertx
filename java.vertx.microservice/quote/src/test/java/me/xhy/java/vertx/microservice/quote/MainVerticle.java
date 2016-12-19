@@ -23,7 +23,7 @@ public class MainVerticle {
 		byte[] bytes = Files.readAllBytes(new File("java.vertx.microservice/quote/src/main/resources/config.json").toPath());
 		JsonObject config = new JsonObject(new String(bytes, "UTF-8"));
 
-		vertx.deployVerticle(GeneratorConfigVerticle.class.getName(), new DeploymentOptions().setConfig(config));
+		vertx.deployVerticle(GeneratorQuoteVerticle.class.getName(), new DeploymentOptions().setConfig(config));
 
 	}
 

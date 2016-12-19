@@ -8,7 +8,7 @@ import me.xhy.java.microservice.common.MicroServiceVerticle;
 /**
  * Created by xuhuaiyu on 2016/11/30.
  */
-public class GeneratorConfigVerticle extends MicroServiceVerticle {
+public class GeneratorQuoteVerticle extends MicroServiceVerticle {
 
 	/**
 	 * The address on which the data are sent.

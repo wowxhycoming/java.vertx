@@ -17,7 +17,7 @@ public class RestQuoteAPIVerticle extends AbstractVerticle {
 
 	@Override
 	public void start() throws Exception {
-		vertx.eventBus().<JsonObject>consumer(GeneratorConfigVerticle.ADDRESS)
+		vertx.eventBus().<JsonObject>consumer(GeneratorQuoteVerticle.ADDRESS)
 				.handler(message -> {
 
 					final JsonObject data = message.body();

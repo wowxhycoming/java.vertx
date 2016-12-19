@@ -57,7 +57,7 @@
 										implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 									<manifestEntries>
 										<Main-Class>io.vertx.core.Launcher</Main-Class>
-										<Main-Verticle>me.xhy.java.vertx.microservice.quote.GeneratorConfigVerticle</Main-Verticle>
+										<Main-Verticle>me.xhy.java.vertx.microservice.quote.GeneratorQuoteVerticle</Main-Verticle>
 									</manifestEntries>
 								</transformer>
 							</transformers>
