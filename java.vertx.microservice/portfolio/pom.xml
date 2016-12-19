@@ -3,20 +3,20 @@
 		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<parent>
-		<artifactId>java.vertx</artifactId>
+		<artifactId>java.vertx.microservice</artifactId>
 		<groupId>me.xhy</groupId>
 		<version>1.0-SNAPSHOT</version>
 	</parent>
 	<modelVersion>4.0.0</modelVersion>
 
-	<artifactId>java.vertx.microservice</artifactId>
-	<packaging>pom</packaging>
-	<modules>
-		<module>quote</module>
-		<module>common</module>
-		<module>portfolio</module>
-		<module>trader</module>
-	</modules>
+	<artifactId>java.vertx.microservice.portfolio</artifactId>
+	<dependencies>
+		<dependency>
+			<groupId>me.xhy</groupId>
+			<artifactId>java.vertx.microservice.common</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
 
 
 </project>
