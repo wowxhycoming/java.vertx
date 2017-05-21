@@ -15,30 +15,30 @@ import org.junit.runner.RunWith;
 @RunWith(VertxUnitRunner.class)
 public class MyFirstVerticleTest {
 
-	private Vertx vertx;
+    private Vertx vertx;
 
-	@Before
-	public void setUp(TestContext context) {
-		vertx = Vertx.vertx();
-		vertx.deployVerticle(MyFirstVerticle.class.getName(),
-				context.asyncAssertSuccess());
-	}
+    @Before
+    public void setUp(TestContext context) {
+        vertx = Vertx.vertx();
+        vertx.deployVerticle(MyFirstVerticle.class.getName(),
+                context.asyncAssertSuccess());
+    }
 
-	@After
-	public void tearDown(TestContext context) {
-		vertx.close(context.asyncAssertSuccess());
-	}
+    @After
+    public void tearDown(TestContext context) {
+        vertx.close(context.asyncAssertSuccess());
+    }
 
-	@Test
-	public void testMyApplication(TestContext context) {
-		final Async async = context.async();
+    @Test
+    public void testMyApplication(TestContext context) {
+        final Async async = context.async();
 
-		vertx.createHttpClient().getNow(10001, "localhost", "/",
-				response -> {
-					response.handler(body -> {
-						context.assertTrue(body.toString().contains("Hello"));
-						async.complete();
-					});
-				});
-	}
+        vertx.createHttpClient().getNow(10001, "localhost", "/",
+                response -> {
+                    response.handler(body -> {
+                        context.assertTrue(body.toString().contains("Hello"));
+                        async.complete();
+                    });
+                });
+    }
 }

@@ -20,47 +20,46 @@ import java.net.ServerSocket;
 @RunWith(VertxUnitRunner.class)
 public class UseConfigTest {
 
-	private Vertx vertx;
+    private Vertx vertx;
 
-	private Integer port;
+    private Integer port;
 
-	@Before
-	public void setUp(TestContext context) throws IOException {
+    @Before
+    public void setUp(TestContext context) throws IOException {
 
-		// 增加启动端口配置
-		/* 如果8081端口也被占用，随机端口配置
-		port = 8081;
-		*/
+        // 增加启动端口配置
+        /* 如果8081端口也被占用，随机端口配置
+        port = 8081;
+        */
 
-		ServerSocket socket = new ServerSocket(0);
-		port = socket.getLocalPort();
-		socket.close();
-		System.out.println(port);
+        ServerSocket socket = new ServerSocket(0);
+        port = socket.getLocalPort(); // 随机获取一个空闲端口
+        socket.close();
+        System.out.println(port);
 
-		DeploymentOptions options = new DeploymentOptions().setConfig(new JsonObject().put("http.port", port));
+        DeploymentOptions options = new DeploymentOptions().setConfig(new JsonObject().put("http.port", port));
 
 
+        vertx = Vertx.vertx();
+        vertx.deployVerticle(UseConfig.class.getName(), options,
+                context.asyncAssertSuccess());
+    }
 
-		vertx = Vertx.vertx();
-		vertx.deployVerticle(UseConfig.class.getName(), options,
-				context.asyncAssertSuccess());
-	}
+    @After
+    public void tearDown(TestContext context) {
+        vertx.close(context.asyncAssertSuccess());
+    }
 
-	@After
-	public void tearDown(TestContext context) {
-		vertx.close(context.asyncAssertSuccess());
-	}
+    @Test
+    public void testMyApplication(TestContext context) {
+        final Async async = context.async();
 
-	@Test
-	public void testMyApplication(TestContext context) {
-		final Async async = context.async();
-
-		vertx.createHttpClient().getNow(port, "localhost", "/",
-				response -> {
-					response.handler(body -> {
-						context.assertTrue(body.toString().contains("Use"));
-						async.complete();
-					});
-				});
-	}
+        vertx.createHttpClient().getNow(port, "localhost", "/",
+                response -> {
+                    response.handler(body -> {
+                        context.assertTrue(body.toString().contains("Use"));
+                        async.complete();
+                    });
+                });
+    }
 }
