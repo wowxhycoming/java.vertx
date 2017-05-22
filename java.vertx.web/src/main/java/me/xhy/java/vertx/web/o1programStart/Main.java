@@ -13,20 +13,17 @@ import me.xhy.java.vertx.web.util.Options;
  */
 public class Main {
 
-	public static void main(final String... args) {
+    public static void main(final String... args) {
 
-		System.out.println(Router.class.getName());
-		System.out.println(Runtime.getRuntime().availableProcessors());
+        System.out.println(Router.class.getName());
+        System.out.println(Runtime.getRuntime().availableProcessors());
 
-		final VertxOptions vertxOptions = Options.getVertxOptions("VXWEB.");
-		final VertxFactory factory = new VertxFactoryImpl();
-		final Vertx vertx = factory.vertx(vertxOptions);
-		final DeploymentOptions verticleOpts = Options.standardDeploymentOptions();
-		vertx.deployVerticle(RouterVerticle.class.getName(), verticleOpts);
+        final VertxOptions vertxOptions = Options.getVertxOptions("VXWEB.");
+        final VertxFactory factory = new VertxFactoryImpl();
+        final Vertx vertx = factory.vertx(vertxOptions);
+        final DeploymentOptions verticleOpts = Options.standardDeploymentOptions();
+        vertx.deployVerticle(RouterVerticle.class.getName(), verticleOpts);
 
-	}
-
-
-
+    }
 
 }

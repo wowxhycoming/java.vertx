@@ -16,22 +16,65 @@
 	</modules>
 
 	<dependencies>
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-core</artifactId>
+			<version>3.3.3</version>
+		</dependency>
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-service-proxy</artifactId>
+			<version>3.3.3</version>
+		</dependency>
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-lang-groovy</artifactId>
+			<version>3.3.3</version>
+		</dependency>
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-lang-js</artifactId>
+			<version>3.3.3</version>
+		</dependency>
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-codegen</artifactId>
+			<version>3.3.3</version>
+			<optional>true</optional>
+		</dependency>
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-sockjs-service-proxy</artifactId>
+			<version>3.3.3</version>
+		</dependency>
 
 		<dependency>
 			<groupId>io.vertx</groupId>
 			<artifactId>vertx-web</artifactId>
 			<version>3.3.3</version>
 		</dependency>
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-hazelcast</artifactId>
+			<version>3.3.3</version>
+		</dependency>
 
+		<!-- https://mvnrepository.com/artifact/io.vertx/vertx-jdbc-client -->
 		<dependency>
 			<groupId>io.vertx</groupId>
 			<artifactId>vertx-jdbc-client</artifactId>
 			<version>3.3.3</version>
 		</dependency>
 
+		<!-- Microservice toolbox -->
 		<dependency>
 			<groupId>io.vertx</groupId>
-			<artifactId>vertx-hazelcast</artifactId>
+			<artifactId>vertx-service-discovery</artifactId>
+			<version>3.3.3</version>
+		</dependency>
+		<dependency>
+			<groupId>io.vertx</groupId>
+			<artifactId>vertx-circuit-breaker</artifactId>
 			<version>3.3.3</version>
 		</dependency>
 
@@ -120,10 +163,10 @@
 									<manifestEntries>
 										<Main-Class>io.vertx.core.Starter</Main-Class>
 										<!-- 最后一个生效，每次一个Verticle-->
-										<!--<Main-Verticle>me.xhy.java.vertx.o1FirstApp.MyFirstVerticle</Main-Verticle>-->
+										<Main-Verticle>me.xhy.java.vertx.o1FirstApp.MyFirstVerticle</Main-Verticle>
 										<!--<Main-Verticle>me.xhy.java.vertx.o2UseConfig.UseConfig</Main-Verticle>-->
 										<!--<Main-Verticle>me.xhy.java.vertx.o3RESTfull.RESTfull</Main-Verticle>-->
-										<Main-Verticle>me.xhy.java.vertx.o4JDBC.JDBC</Main-Verticle>
+										<!--<Main-Verticle>me.xhy.java.vertx.o4JDBC.JDBC</Main-Verticle>-->
 									</manifestEntries>
 								</transformer>
 							</transformers>
