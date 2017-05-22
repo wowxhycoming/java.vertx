@@ -8,9 +8,9 @@ import io.vertx.ext.web.RoutingContext;
  */
 public class Router4Handler implements Handler<RoutingContext> {
 
-	@Override
-	public void handle(final RoutingContext event) {
-		System.out.println("[Router 4]" + Thread.currentThread().getName());
-		event.next();
-	}
+    @Override
+    public void handle(final RoutingContext event) {
+        System.out.println("[Router 4]" + Thread.currentThread().getName());
+        event.next();
+    }
 }

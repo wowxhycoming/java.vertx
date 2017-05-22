@@ -12,36 +12,36 @@ import me.xhy.java.vertx.web.o3router.handler.*;
 
 public class O4SubRouter extends AbstractVerticle {
 
-	@Override
-	public void start(Future<Void> fut) throws Exception {
-		final HttpServer server = vertx.createHttpServer();
+    @Override
+    public void start(Future<Void> fut) throws Exception {
+        final HttpServer server = vertx.createHttpServer();
 
-		System.out.println("[Deployed]" + Thread.currentThread().getName());
+        System.out.println("[Deployed]" + Thread.currentThread().getName());
 
-		Router router = Router.router(vertx);
-		router.route("/path/*").handler(new Router1Handler());
-		router.route("/path/*").handler(new Router2Handler());
+        Router router = Router.router(vertx);
+        router.route("/path/*").handler(new Router1Handler());
+        router.route("/path/*").handler(new Router2Handler());
 
-		// 构建子路由
-		Router subRouter =  Router.router(vertx);
-		subRouter.route("/sub").handler(new SubRouter1Handler());
-		subRouter.route("/sub").handler(new SubRouter2Handler());
-		subRouter.route("/sub").handler(new SubRouter3Handler());
-		// 路径 /path 下的子路由
-		router.mountSubRouter("/path", subRouter);
+        // 构建子路由
+        Router subRouter = Router.router(vertx);
+        subRouter.route("/sub").handler(new SubRouter1Handler());
+        subRouter.route("/sub").handler(new SubRouter2Handler());
+        subRouter.route("/sub").handler(new SubRouter3Handler());
+        // 路径 /path 下的子路由
+        router.mountSubRouter("/path", subRouter);
 
-		router.route("/path/*").handler(new Router3Handler());
-		router.route("/path/*").handler(new EndHandler());
+        router.route("/path/*").handler(new Router3Handler());
+        router.route("/path/*").handler(new EndHandler());
 
-		server.requestHandler(router::accept)
-				.listen(config().getInteger("http.port",10015), result -> {
-					if (result.succeeded()) {
-						fut.complete();
-					} else {
-						fut.fail(fut.cause());
-					}
-				});
+        server.requestHandler(router::accept)
+        .listen(config().getInteger("http.port", 10015), result -> {
+            if (result.succeeded()) {
+                fut.complete();
+            } else {
+                fut.fail(fut.cause());
+            }
+        });
 
-	}
+    }
 
 }

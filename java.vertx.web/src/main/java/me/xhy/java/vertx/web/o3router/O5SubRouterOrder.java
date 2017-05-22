@@ -12,46 +12,46 @@ import me.xhy.java.vertx.web.o3router.handler.*;
 
 public class O5SubRouterOrder extends AbstractVerticle {
 
-	@Override
-	public void start(Future<Void> fut) throws Exception {
-		final HttpServer server = vertx.createHttpServer();
+    @Override
+    public void start(Future<Void> fut) throws Exception {
+        final HttpServer server = vertx.createHttpServer();
 
-		System.out.println("[Deployed]" + Thread.currentThread().getName());
+        System.out.println("[Deployed]" + Thread.currentThread().getName());
 
-		Router router = Router.router(vertx);
-		router.route("/path/*").order(3).handler(new Router1Handler()); // mountSubRouter index +0
-		router.route("/path/sub").order(1).handler(new Router2Handler()); // mountSubRouter index +1
+        Router router = Router.router(vertx);
+        router.route("/path/*").order(3).handler(new Router1Handler()); // mountSubRouter index +0
+        router.route("/path/sub").order(1).handler(new Router2Handler()); // mountSubRouter index +1
 
-		Router subRouter1 =  Router.router(vertx);
-		subRouter1.route("/sub").order(1).handler(new SubRouter1Handler("A"));
-		subRouter1.route("/sub").order(2).handler(new SubRouter2Handler("A"));
-		subRouter1.route("/sub").order(3).handler(new SubRouter3Handler("A"));
-		router.mountSubRouter("/path", subRouter1); // mountSubRouter index +2 ， order =2
+        Router subRouter1 = Router.router(vertx);
+        subRouter1.route("/sub").order(1).handler(new SubRouter1Handler("A"));
+        subRouter1.route("/sub").order(2).handler(new SubRouter2Handler("A"));
+        subRouter1.route("/sub").order(3).handler(new SubRouter3Handler("A"));
+        router.mountSubRouter("/path", subRouter1); // mountSubRouter index +2 ， order =2
 
-		router.route("/path/*").order(0).handler(new Router3Handler()); // mountSubRouter index +3
+        router.route("/path/*").order(0).handler(new Router3Handler()); // mountSubRouter index +3
 
-		Router subRouter2 = Router.router(vertx);
-		subRouter2.route("/sub").order(3).handler(new SubRouter1Handler("B"));
-		subRouter2.route("/sub").order(2).handler(new SubRouter2Handler("B"));
-		subRouter2.route("/sub").order(1).handler(new SubRouter3Handler("B"));
-		router.mountSubRouter("/path", subRouter2); // mountSubRouter index +4 ， order = 4
+        Router subRouter2 = Router.router(vertx);
+        subRouter2.route("/sub").order(3).handler(new SubRouter1Handler("B"));
+        subRouter2.route("/sub").order(2).handler(new SubRouter2Handler("B"));
+        subRouter2.route("/sub").order(1).handler(new SubRouter3Handler("B"));
+        router.mountSubRouter("/path", subRouter2); // mountSubRouter index +4 ， order = 4
 
-		router.route("/path/sub").order(-1).handler(new Router4Handler());
+        router.route("/path/sub").order(-1).handler(new Router4Handler());
 
-		router.route("/path/*").order(-2).handler(new Router5Handler());
+        router.route("/path/*").order(-2).handler(new Router5Handler());
 
-		router.route("/path/*").last().handler(new EndHandler());
-		// order 相等的， 按代码先后顺序
+        router.route("/path/*").last().handler(new EndHandler());
+        // order 相等的， 按代码先后顺序
 
-		server.requestHandler(router::accept)
-				.listen(config().getInteger("http.port",10016), result -> {
-					if (result.succeeded()) {
-						fut.complete();
-					} else {
-						fut.fail(fut.cause());
-					}
-				});
+        server.requestHandler(router::accept)
+        .listen(config().getInteger("http.port", 10016), result -> {
+            if (result.succeeded()) {
+                fut.complete();
+            } else {
+                fut.fail(fut.cause());
+            }
+        });
 
-	}
+    }
 
 }

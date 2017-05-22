@@ -22,8 +22,10 @@ public class O3BlockingHandler extends AbstractVerticle {
 		System.out.println("[Deployed]" + Thread.currentThread().getName());
 
 		Router router = Router.router(vertx);
-		// Router1Handler 在 EndHandler 后，所以被拦截住了
 		router.route("/path/*").order(1).handler(new Router1Handler());
+		/**
+		 * 这里将 handler 改成了 blockingHandler
+		 */
 		router.route("/path/*").order(2).blockingHandler(new Router2Handler());
 		router.route("/path/").order(3).handler(new Router3Handler());
 		router.route("/path/*").order(4).handler(new EndHandler());

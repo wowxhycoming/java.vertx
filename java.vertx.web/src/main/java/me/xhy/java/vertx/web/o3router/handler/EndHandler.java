@@ -8,9 +8,9 @@ import io.vertx.ext.web.RoutingContext;
  */
 public class EndHandler implements Handler<RoutingContext> {
 
-	@Override
-	public void handle(final RoutingContext event) {
-		System.out.println("[Router end]" + Thread.currentThread().getName());
-		event.response().end("End Router");
-	}
+    @Override
+    public void handle(final RoutingContext event) {
+        System.out.println("[Router end]" + Thread.currentThread().getName());
+        event.response().end("End Router");
+    }
 }
