@@ -16,38 +16,45 @@ import org.apache.commons.configuration.Configuration;
  */
 public class ClusterStarter {
 
-	private static Configuration LOADER;
-	private static String VX_FREFIX = "vertx.";
+    private static Configuration LOADER;
+    private static String VX_FREFIX = "vertx.";
 
 
+    public static void main(final String... args) {
 
-	public static void main(final String... args) {
+        System.out.println(Runtime.getRuntime().availableProcessors());
 
-		System.out.println(Runtime.getRuntime().availableProcessors());
+        // 读取配置
+        final VertxOptions vertxOptions = Options.getVertxOptions("VXWEB.");
+        final VertxFactory factory = new VertxFactoryImpl();
 
-		// 读取配置
-		final VertxOptions vertxOptions = Options.getVertxOptions("VXWEB.");
-		final VertxFactory factory = new VertxFactoryImpl();
+        // 创建 cluster
+        final ClusterManager clusterManager = new HazelcastClusterManager(new Config());
+        vertxOptions.setClusterManager(clusterManager);
 
-		// 创建 cluster
-		final ClusterManager clusterManager = new HazelcastClusterManager(new Config());
-		vertxOptions.setClusterManager(clusterManager);
+        // 使用 factory 创建 cluster
+        factory.clusteredVertx(vertxOptions, resultHandler -> {
+            /**
+             * 这里的 resultHandler 类型是 io.vertx.core.Handler<AsyncResult<Vertx>>，
+             * 所以 resultHandler.result() 直接返回 Vertx 引用，不需要强制转换
+             */
+            if (resultHandler.succeeded()) {
+                // 从这里开始流程和单例运行的代码一致了
+                final Vertx vertx = resultHandler.result();
+                final DeploymentOptions verticleOpts = Options.standardDeploymentOptions();
+                vertx.deployVerticle(RouterVerticle.class.getName(), verticleOpts);
+            }
+        });
 
-		// 使用 factory 创建 cluster
-		factory.clusteredVertx(vertxOptions, resultHandler -> {
-			// 这里的 resultHandler 类型是 io.vertx.core.Handler<AsyncResult<Vertx>>，
-			// 所以 resultHandler.result()直接返回 Vertx引用 不需要强制转换
-			if(resultHandler.succeeded()) {
-				// 从这里开始流程和单例运行的代码一致了
-//				final Vertx vertx = factory.vertx(standardDeploymentOptions);
-//				final DeploymentOptions verticleOpts = standardDeploymentOptions();
-//				vertx.deployVerticle(RouterVerticle.class.getName(), verticleOpts);
-				final Vertx vertx = resultHandler.result();
-				final DeploymentOptions verticleOpts = Options.standardDeploymentOptions();
-				vertx.deployVerticle(RouterVerticle.class.getName(), verticleOpts);
-			}
-		});
+        /**
+         * 由于要测试 Cluster ，但是在同一台机器上分别运行两个 ClusterStarter 。
+         * 提示 ：
+         *  五月 22, 2017 9:31:57 下午 io.vertx.core.impl.VertxImpl
+         *  严重: Failed to start event bus
+         *  java.net.BindException: Address already in use: bind
+         * 看起来像是 event bus 启动失败了，还需要端口？
+         */
 
-	}
+    }
 
 }
