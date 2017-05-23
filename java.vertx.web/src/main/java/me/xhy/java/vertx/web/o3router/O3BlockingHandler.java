@@ -31,7 +31,7 @@ public class O3BlockingHandler extends AbstractVerticle {
 		router.route("/path/*").order(4).handler(new EndHandler());
 
 		server.requestHandler(router::accept)
-				.listen(config().getInteger("http.port",10014), result -> {
+				.listen(config().getInteger("http.port",10023), result -> {
 					if (result.succeeded()) {
 						fut.complete();
 					} else {

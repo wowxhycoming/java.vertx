@@ -28,7 +28,7 @@ public class O1Router extends AbstractVerticle {
         router.route("/path/*").handler(new EndHandler());
 
         server.requestHandler(router::accept)
-        .listen(config().getInteger("http.port", 10012), result -> {
+        .listen(config().getInteger("http.port", 10021), result -> {
             if (result.succeeded()) {
                 fut.complete();
             } else {

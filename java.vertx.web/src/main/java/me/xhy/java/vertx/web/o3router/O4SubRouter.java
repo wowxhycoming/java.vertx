@@ -34,7 +34,7 @@ public class O4SubRouter extends AbstractVerticle {
         router.route("/path/*").handler(new EndHandler());
 
         server.requestHandler(router::accept)
-        .listen(config().getInteger("http.port", 10015), result -> {
+        .listen(config().getInteger("http.port", 10024), result -> {
             if (result.succeeded()) {
                 fut.complete();
             } else {

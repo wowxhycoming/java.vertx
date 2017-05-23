@@ -12,7 +12,7 @@ import me.xhy.java.vertx.web.o3router.handler.Router1Handler;
 /**
  * Created by xuhuaiyu on 2016/11/18.
  */
-public class O6FailureHandler extends AbstractVerticle {
+public class O7FailureHandler extends AbstractVerticle {
 
     @Override
     public void start(Future<Void> fut) throws Exception {
@@ -28,7 +28,7 @@ public class O6FailureHandler extends AbstractVerticle {
         router.route("/path").last().handler(new EndHandler());
 
         server.requestHandler(router::accept)
-        .listen(config().getInteger("http.port", 10017), result -> {
+        .listen(config().getInteger("http.port", 10027), result -> {
             if (result.succeeded()) {
                 fut.complete();
             } else {
