@@ -20,7 +20,13 @@ public class O6ReRouter extends AbstractVerticle {
         router.route("/path/a").order(-1).handler(new Router1Handler());
         router.route("/path/b").order(0).handler(new Router2Handler());
         router.route("/path/a").order(1).handler(new Router3Handler());
-        router.route("/path/a").last().handler(new EndHandler());
+
+        /**
+         * // 一定要让最初访问的 url 可以结束
+         */
+        router.route("/path/*").last().handler(new EndHandler());
+
+        // Re-Router
         router.route("/path/a").handler(context -> {
             System.out.println("[REROUTING]");
             context.reroute("/path/b");

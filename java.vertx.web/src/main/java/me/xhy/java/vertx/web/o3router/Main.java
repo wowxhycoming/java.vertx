@@ -26,6 +26,7 @@ public class Main {
         vertx.deployVerticle(O3BlockingHandler.class.getName(), verticleOpts);
         vertx.deployVerticle(O4SubRouter.class.getName(), verticleOpts);
         vertx.deployVerticle(O5SubRouterOrder.class.getName(), verticleOpts);
+        vertx.deployVerticle(O6ReRouter.class.getName(), verticleOpts);
         vertx.deployVerticle(O7FailureHandler.class.getName(), verticleOpts);
 
     }
