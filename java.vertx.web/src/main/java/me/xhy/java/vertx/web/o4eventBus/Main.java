@@ -10,17 +10,17 @@ import me.xhy.java.vertx.web.util.Options;
  * Created by xuhuaiyu on 2016/11/19.
  */
 public class Main {
-	public static void main(String[] args) {
+    public static void main(String[] args) {
 
-		final VertxOptions vertxOptions = Options.getVertxOptions("VXWEB.");
-		final VertxFactory vertxFactory = new VertxFactoryImpl();
-		final Vertx vertx = vertxFactory.vertx(vertxOptions);
+        final VertxOptions vertxOptions = Options.getVertxOptions("VXWEB.");
+        final VertxFactory vertxFactory = new VertxFactoryImpl();
+        final Vertx vertx = vertxFactory.vertx(vertxOptions);
 
-		// 发布 standard 类型的 verticle
-		vertx.deployVerticle(RouterVerticle.class.getName(), Options.standardDeploymentOptions());
+        // 发布 standard 类型的 verticle
+        vertx.deployVerticle(RouterVerticle.class.getName(), Options.standardDeploymentOptions());
 
-		// 发布 worker 类型的 verticle
-		vertx.deployVerticle(UserWorker.class.getName(), Options.workerDeploymentOptions());
+        // 发布 worker 类型的 verticle
+        vertx.deployVerticle(UserWorker.class.getName(), Options.workerDeploymentOptions());
 
-	}
+    }
 }
