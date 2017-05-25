@@ -15,7 +15,7 @@ import org.apache.commons.configuration.Configuration;
 /**
  * Created by xuhuaiyu on 2016/11/13.
  */
-public class ClusterStarter {
+public class ClusterStarter2 {
 
     private static Configuration LOADER;
     private static String VX_FREFIX = "vertx.";
@@ -40,8 +40,8 @@ public class ClusterStarter {
         vertxOptions.setClusterManager(clusterManager);
 
         // 使用 factory 创建 cluster
-        // vertx 1
-        factory.clusteredVertx(vertxOptions.setClusterPort(3001), resultHandler -> {
+        // vertx 2
+        factory.clusteredVertx(vertxOptions.setClusterPort(3002), resultHandler -> {
             /**
              * 这里的 resultHandler 类型是 io.vertx.core.Handler<AsyncResult<Vertx>>，
              * 所以 resultHandler.result() 直接返回 Vertx 引用，不需要强制转换
@@ -54,8 +54,8 @@ public class ClusterStarter {
                 /**
                  * 集群嘛，至少启动两个，这里分别指定两个 verticle 的 httpserver 端口
                  */
-                // verticle 1
-                verticleOpts.setConfig(new JsonObject().put("http.port", 10021));
+                // verticle 2
+                verticleOpts.setConfig(new JsonObject().put("http.port", 10022));
                 vertx.deployVerticle(RouterVerticle.class.getName(), verticleOpts);
             }
         });

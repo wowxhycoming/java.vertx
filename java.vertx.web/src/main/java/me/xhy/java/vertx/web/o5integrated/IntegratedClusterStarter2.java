@@ -1,4 +1,4 @@
-package me.xhy.java.vertx.web.o2cluster;
+package me.xhy.java.vertx.web.o5integrated;
 
 import com.hazelcast.config.Config;
 import io.vertx.core.DeploymentOptions;
@@ -9,13 +9,14 @@ import io.vertx.core.json.JsonObject;
 import io.vertx.core.spi.VertxFactory;
 import io.vertx.core.spi.cluster.ClusterManager;
 import io.vertx.spi.cluster.hazelcast.HazelcastClusterManager;
+import me.xhy.java.vertx.web.o4eventBus.RouterVerticle;
 import me.xhy.java.vertx.web.util.Options;
 import org.apache.commons.configuration.Configuration;
 
 /**
- * Created by xuhuaiyu on 2016/11/13.
+ * Created by xuhuaiyu on 2017/05/25.
  */
-public class ClusterStarter {
+public class IntegratedClusterStarter2 {
 
     private static Configuration LOADER;
     private static String VX_FREFIX = "vertx.";
@@ -39,9 +40,14 @@ public class ClusterStarter {
         final ClusterManager clusterManager = new HazelcastClusterManager(new Config());
         vertxOptions.setClusterManager(clusterManager);
 
-        // 使用 factory 创建 cluster
-        // vertx 1
-        factory.clusteredVertx(vertxOptions.setClusterPort(3001), resultHandler -> {
+        /**
+         * vertx 2
+         *
+         * 下面发布了一个 http server ， 这里没有部署 workerVerticle
+         *
+         * 访问边部署的 http server ， 让其对 EventBus 发起事件， 如果另外一边的 work 可以接收到， 证明 EventBus 集群成功 。
+         */
+        factory.clusteredVertx(vertxOptions.setClusterPort(3052), resultHandler -> {
             /**
              * 这里的 resultHandler 类型是 io.vertx.core.Handler<AsyncResult<Vertx>>，
              * 所以 resultHandler.result() 直接返回 Vertx 引用，不需要强制转换
@@ -54,20 +60,11 @@ public class ClusterStarter {
                 /**
                  * 集群嘛，至少启动两个，这里分别指定两个 verticle 的 httpserver 端口
                  */
-                // verticle 1
-                verticleOpts.setConfig(new JsonObject().put("http.port", 10021));
+                // verticle 2
+                verticleOpts.setConfig(new JsonObject().put("http.port", 10052));
                 vertx.deployVerticle(RouterVerticle.class.getName(), verticleOpts);
             }
         });
-
-        /**
-         * 由于要测试 Cluster ，但是在同一台机器上分别运行两个 ClusterStarter 。
-         * 提示 ：
-         *  五月 22, 2017 9:31:57 下午 io.vertx.core.impl.VertxImpl
-         *  严重: Failed to start event bus
-         *  java.net.BindException: Address already in use: bind
-         * 看起来像是 event bus 启动失败了，还需要端口？
-         */
 
     }
 

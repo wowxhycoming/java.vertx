@@ -19,6 +19,6 @@ public class RouterVerticle extends AbstractVerticle {
             request.response().end("The Cluster Vert.x Web Demo");
         });
 
-        server.listen(10011);
+        server.listen(config().getInteger("http.port"));
     }
 }
