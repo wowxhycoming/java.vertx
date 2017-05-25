@@ -31,7 +31,7 @@ public class O6FailureHandlerTest {
 		DeploymentOptions options = new DeploymentOptions().setConfig(new JsonObject().put("http.port", port));
 
 		vertx = Vertx.vertx();
-		vertx.deployVerticle(O6FailureHandler.class.getName(), options,
+		vertx.deployVerticle(O7FailureHandler.class.getName(), options,
 				context.asyncAssertSuccess());
 
 		System.out.println("启动完毕");

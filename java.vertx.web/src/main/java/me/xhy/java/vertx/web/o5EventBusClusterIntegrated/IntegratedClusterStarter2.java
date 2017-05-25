@@ -1,4 +1,4 @@
-package me.xhy.java.vertx.web.o5integrated;
+package me.xhy.java.vertx.web.o5EventBusClusterIntegrated;
 
 import com.hazelcast.config.Config;
 import io.vertx.core.DeploymentOptions;
