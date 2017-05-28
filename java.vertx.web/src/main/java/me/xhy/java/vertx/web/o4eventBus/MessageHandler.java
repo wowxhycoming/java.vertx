@@ -1,9 +1,15 @@
 package me.xhy.java.vertx.web.o4eventBus;
 
+import io.netty.util.Recycler;
+import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
 import io.vertx.core.Handler;
 import io.vertx.core.eventbus.EventBus;
+import io.vertx.core.eventbus.Message;
+import io.vertx.core.http.HttpServer;
+import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.RoutingContext;
+import me.xhy.java.vertx.web.o6handlers.MessageAsyncResult;
 
 /**
  * Created by xuhuaiyu on 2016/11/19.
@@ -23,7 +29,6 @@ public class MessageHandler implements Handler<RoutingContext> {
 
         // 获取 EventBus
         final EventBus bus = routingContext.vertx().eventBus();
-        System.out.println("[request]" + Thread.currentThread().getName());
 
         /**
          * 发送消息的方法是 send ，而不是 publish ， 也就是说使用了 EventBus 的 Request/Response 模式 。
@@ -34,21 +39,25 @@ public class MessageHandler implements Handler<RoutingContext> {
          * send 的第二个参数 Message ，
          *  Vert.x的Event Bus支持下边几种类型的直接传递 ：Primitive/Simple Type 、 String 、 Buffer 、 JSON（JsonArray/JsonObject）
          *
-         * send 的第三个参数 Handler<AsyncResult<Message<T>>>，
-         *  是一个ReplyHandler（类型：io.vertx.core.Handler<AsyncResult<Message<Boolean>>>），它会等待Consumer的处理结果。
+         * send 方法第三个参数是一个ReplyHandler（类型：io.vertx.core.Handler<AsyncResult<Message<Boolean>>>），它会等待Consumer的处理结果。
          */
-        bus.<Boolean>send("MSG://QUEUE/USER", user.tojson(), messageAsyncResult -> {
-            System.out.println("[request reply] " + Thread.currentThread().getName());
-            if (messageAsyncResult.succeeded()) {
-                final boolean ret = messageAsyncResult.result().body();
-                if (ret) {
-                    routingContext.response().end(String.valueOf(ret));
-                } else {
-                    Future.failedFuture("User Processing Met Issue.");
+        bus.<Boolean>send("MSG://QUEUE/USER",
+                user.tojson(),
+                messageAsyncResult -> {
+                    System.out.println("publish === " + Thread.currentThread().getName());
+                    if (messageAsyncResult.succeeded()) {
+                        final boolean ret = messageAsyncResult.result().body();
+                        if (ret) {
+                            routingContext.response().end(String.valueOf(ret));
+                        } else {
+                            Future.failedFuture("User Processing Met Issue.");
+                        }
+                    } else {
+                        Future.failedFuture("Handler internal error");
+                    }
                 }
-            } else {
-                Future.failedFuture("Handler internal error");
-            }
-        });
+                // 使用类的方式管理 handler
+//                MessageAsyncResult.create(routingContext.response())
+                );
     }
 }

@@ -1,4 +1,4 @@
-package me.xhy.java.vertx.web.o6deployHandler;
+package me.xhy.java.vertx.web.o6handlers;
 
 import io.vertx.core.Vertx;
 import io.vertx.core.VertxOptions;
