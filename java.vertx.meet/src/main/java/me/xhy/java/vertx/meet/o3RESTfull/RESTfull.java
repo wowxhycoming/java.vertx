@@ -1,9 +1,7 @@
 package me.xhy.java.vertx.meet.o3RESTfull;
 
 import io.vertx.core.AbstractVerticle;
-import io.vertx.core.DeploymentOptions;
 import io.vertx.core.Future;
-import io.vertx.core.Vertx;
 import io.vertx.core.http.HttpServerResponse;
 import io.vertx.core.json.Json;
 import io.vertx.core.json.JsonObject;
@@ -11,9 +9,7 @@ import io.vertx.ext.web.Router;
 import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.StaticHandler;
-import me.xhy.java.vertx.meet.o3RESTfull.Whisky;
 
-import java.io.File;
 import java.util.LinkedHashMap;
 import java.util.Map;
 

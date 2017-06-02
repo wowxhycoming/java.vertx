@@ -5,7 +5,6 @@ import io.vertx.core.Future;
 import io.vertx.core.http.HttpServer;
 import io.vertx.ext.web.Router;
 import me.xhy.java.vertx.web.o3router.handler.*;
-import org.codehaus.groovy.runtime.powerassert.SourceText;
 
 /**
  * Created by xuhuaiyu on 2017/5/23.

@@ -1,15 +1,9 @@
 package me.xhy.java.vertx.web.o4eventBus;
 
-import io.netty.util.Recycler;
-import io.vertx.core.AsyncResult;
 import io.vertx.core.Future;
 import io.vertx.core.Handler;
 import io.vertx.core.eventbus.EventBus;
-import io.vertx.core.eventbus.Message;
-import io.vertx.core.http.HttpServer;
-import io.vertx.core.http.HttpServerResponse;
 import io.vertx.ext.web.RoutingContext;
-import me.xhy.java.vertx.web.o6handlers.MessageAsyncResult;
 
 /**
  * Created by xuhuaiyu on 2016/11/19.
