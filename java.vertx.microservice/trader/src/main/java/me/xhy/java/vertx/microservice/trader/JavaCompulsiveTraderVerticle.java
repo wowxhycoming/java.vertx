@@ -3,7 +3,6 @@ package me.xhy.java.vertx.microservice.trader;
 import io.vertx.core.Future;
 import io.vertx.core.eventbus.MessageConsumer;
 import io.vertx.core.json.JsonObject;
-import io.vertx.groovy.servicediscovery.types.MessageSource;
 import me.xhy.java.microservice.common.MicroServiceVerticle;
 import me.xhy.java.microservice.portfolio.model.Portfolio;
 

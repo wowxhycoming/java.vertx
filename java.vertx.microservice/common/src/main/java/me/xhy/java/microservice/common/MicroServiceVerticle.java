@@ -18,78 +18,78 @@ import java.util.Set;
  */
 public class MicroServiceVerticle extends AbstractVerticle {
 
-	protected ServiceDiscovery discovery;
-	protected Set<Record> registeredRecords = new ConcurrentHashSet<>();
+    protected ServiceDiscovery discovery;
+    protected Set<Record> registeredRecords = new ConcurrentHashSet<>();
 
-	@Override
-	public void start() {
-		discovery = ServiceDiscovery.create(vertx, new ServiceDiscoveryOptions().setBackendConfiguration(config()));
-	}
+    @Override
+    public void start() {
+        discovery = ServiceDiscovery.create(vertx, new ServiceDiscoveryOptions().setBackendConfiguration(config()));
+    }
 
-	public void publishHttpEndpoint(String name, String host, int port, Handler<AsyncResult<Void>> completionHandler) {
-		Record record = HttpEndpoint.createRecord(name, host, port, "/");
-		publish(record, completionHandler);
-	}
+    public void publishHttpEndpoint(String name, String host, int port, Handler<AsyncResult<Void>> completionHandler) {
+        Record record = HttpEndpoint.createRecord(name, host, port, "/");
+        publish(record, completionHandler);
+    }
 
-	public void publishMessageSource(String name, String address, Class contentClass, Handler<AsyncResult<Void>>
-			completionHandler) {
-		Record record = MessageSource.createRecord(name, address, contentClass);
-		publish(record, completionHandler);
-	}
+    public void publishMessageSource(String name, String address, Class contentClass, Handler<AsyncResult<Void>>
+            completionHandler) {
+        Record record = MessageSource.createRecord(name, address, contentClass);
+        publish(record, completionHandler);
+    }
 
-	public void publishMessageSource(String name, String address, Handler<AsyncResult<Void>>
-			completionHandler) {
-		Record record = MessageSource.createRecord(name, address);
-		publish(record, completionHandler);
-	}
+    public void publishMessageSource(String name, String address, Handler<AsyncResult<Void>>
+            completionHandler) {
+        Record record = MessageSource.createRecord(name, address);
+        publish(record, completionHandler);
+    }
 
-	public void publishEventBusService(String name, String address, Class serviceClass, Handler<AsyncResult<Void>>
-			completionHandler) {
-		Record record = EventBusService.createRecord(name, address, serviceClass);
-		publish(record, completionHandler);
-	}
+    public void publishEventBusService(String name, String address, Class serviceClass, Handler<AsyncResult<Void>>
+            completionHandler) {
+        Record record = EventBusService.createRecord(name, address, serviceClass);
+        publish(record, completionHandler);
+    }
 
-	private void publish(Record record, Handler<AsyncResult<Void>> completionHandler) {
-		if (discovery == null) {
-			try {
-				start();
-			} catch (Exception e) {
-				throw new RuntimeException("Cannot create discovery service");
-			}
-		}
+    private void publish(Record record, Handler<AsyncResult<Void>> completionHandler) {
+        if (discovery == null) {
+            try {
+                start();
+            } catch (Exception e) {
+                throw new RuntimeException("Cannot create discovery service");
+            }
+        }
 
-		discovery.publish(record, ar -> {
-			if (ar.succeeded()) {
-				registeredRecords.add(record);
-				completionHandler.handle(Future.succeededFuture());
-			} else {
-				completionHandler.handle(Future.failedFuture(ar.cause()));
-			}
-		});
-	}
+        discovery.publish(record, ar -> {
+            if (ar.succeeded()) {
+                registeredRecords.add(record);
+                completionHandler.handle(Future.succeededFuture());
+            } else {
+                completionHandler.handle(Future.failedFuture(ar.cause()));
+            }
+        });
+    }
 
-	@Override
-	public void stop(Future<Void> future) throws Exception {
-		List<Future> futures = new ArrayList<>();
-		for (Record record : registeredRecords) {
-			Future<Void> unregistrationFuture = Future.future();
-			futures.add(unregistrationFuture);
-			discovery.unpublish(record.getRegistration(), unregistrationFuture.completer());
-		}
+    @Override
+    public void stop(Future<Void> future) throws Exception {
+        List<Future> futures = new ArrayList<>();
+        for (Record record : registeredRecords) {
+            Future<Void> unregistrationFuture = Future.future();
+            futures.add(unregistrationFuture);
+            discovery.unpublish(record.getRegistration(), unregistrationFuture.completer());
+        }
 
-		if (futures.isEmpty()) {
-			discovery.close();
-			future.complete();
-		} else {
-			CompositeFuture composite = CompositeFuture.all(futures);
-			composite.setHandler(ar -> {
-				discovery.close();
-				if (ar.failed()) {
-					future.fail(ar.cause());
-				} else {
-					future.complete();
-				}
-			});
-		}
-	}
+        if (futures.isEmpty()) {
+            discovery.close();
+            future.complete();
+        } else {
+            CompositeFuture composite = CompositeFuture.all(futures);
+            composite.setHandler(ar -> {
+                discovery.close();
+                if (ar.failed()) {
+                    future.fail(ar.cause());
+                } else {
+                    future.complete();
+                }
+            });
+        }
+    }
 }

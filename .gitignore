@@ -1,6 +1,6 @@
-.idea
-.vertx
+.idea/
+.vertx/
 */target/
 *.iml
-java.vertx.ipr
-java.vertx.iws
+*.ipr
+*.iws

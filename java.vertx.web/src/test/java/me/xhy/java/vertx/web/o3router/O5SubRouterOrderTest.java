@@ -19,42 +19,42 @@ import java.io.IOException;
 @RunWith(VertxUnitRunner.class)
 public class O5SubRouterOrderTest {
 
-	private Vertx vertx;
+    private Vertx vertx;
 
-	private Integer port;
+    private Integer port;
 
-	@Before
-	public void setUp(TestContext context) throws IOException {
+    @Before
+    public void setUp(TestContext context) throws IOException {
 
-		port = 10016;
+        port = 10016;
 
-		DeploymentOptions options = new DeploymentOptions().setConfig(new JsonObject().put("http.port", port));
+        DeploymentOptions options = new DeploymentOptions().setConfig(new JsonObject().put("http.port", port));
 
-		vertx = Vertx.vertx();
-		vertx.deployVerticle(O5SubRouterOrder.class.getName(), options,
-				context.asyncAssertSuccess());
+        vertx = Vertx.vertx();
+        vertx.deployVerticle(O5SubRouterOrder.class.getName(), options,
+                context.asyncAssertSuccess());
 
-		System.out.println("启动完毕");
-	}
+        System.out.println("启动完毕");
+    }
 
-	@After
-	public void tearDown(TestContext context) {
-		vertx.close(context.asyncAssertSuccess());
-	}
+    @After
+    public void tearDown(TestContext context) {
+        vertx.close(context.asyncAssertSuccess());
+    }
 
-	@Test
-	public void testMyApplication(TestContext context) throws InterruptedException {
+    @Test
+    public void testMyApplication(TestContext context) throws InterruptedException {
 
-		final Async async = context.async();
+        final Async async = context.async();
 
-		vertx.createHttpClient().getNow(port, "localhost", "/path/sub",
-				response -> {
-					response.handler(body -> {
-						context.assertTrue(true);
-						async.complete();
-					});
-				});
+        vertx.createHttpClient().getNow(port, "localhost", "/path/sub",
+                response -> {
+                    response.handler(body -> {
+                        context.assertTrue(true);
+                        async.complete();
+                    });
+                });
 
-	}
+    }
 
 }

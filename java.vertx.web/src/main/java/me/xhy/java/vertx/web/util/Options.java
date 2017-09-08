@@ -87,14 +87,14 @@ public class Options {
         opts.setWorker(false); // 默认是false
         opts.setMultiThreaded(false); // 默认是false，仅为演示
 
-		/*
-		因为RouterVerticle是一个Standard的类型，这里提供常用的关于Verticle的选项设置，其余的配置项可参考DeploymentOptions类的源代码查看，
-		从Vert.x 3.0开始，Verticle类型从2.0的两种（Standard、Worker）升级成了三种：
+        /*
+        因为RouterVerticle是一个Standard的类型，这里提供常用的关于Verticle的选项设置，其余的配置项可参考DeploymentOptions类的源代码查看，
+        从Vert.x 3.0开始，Verticle类型从2.0的两种（Standard、Worker）升级成了三种：
 
-		Standard Verticles
-		Worker Verticles
-		Multi-threaded Worker Verticles（并行应用，超过一个线程执行该应用）
-		*/
+        Standard Verticles
+        Worker Verticles
+        Multi-threaded Worker Verticles（并行应用，超过一个线程执行该应用）
+        */
 
         return opts;
     }
