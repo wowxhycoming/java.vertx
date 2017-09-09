@@ -10,7 +10,7 @@ import me.xhy.java.vertx.blueprint.s2multi.verticle.TodoVerticle;
 /**
  * Created by xuhuaiyu on 2017/6/6.
  */
-public class MultiApplicationMain {
+public class JDBCApplicationMain {
 
     public static void main(String[] args) {
 

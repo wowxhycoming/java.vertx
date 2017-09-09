@@ -11,7 +11,7 @@ import me.xhy.java.vertx.blueprint.s2multi.verticle.TodoVerticle;
 /**
  * Created by xuhuaiyu on 2017/6/6.
  */
-public class SingleApplicationMain {
+public class RedisApplicationMain {
 
     public static void main(String[] args) {
 
