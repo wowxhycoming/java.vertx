@@ -13,7 +13,7 @@
         <module>java.vertx.meet</module>
         <module>java.vertx.web</module>
         <module>java.vertx.microservice</module>
-        <module>java.vertx.blueprint</module>
+        <module>java.vertx.blueprint.todo</module>
     </modules>
 
     <properties>
