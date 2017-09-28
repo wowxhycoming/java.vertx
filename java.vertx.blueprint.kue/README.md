@@ -54,3 +54,9 @@ java -jar java.vertx.blueprint.kue.core-1.0-SNAPSHOT-fat.jar -cluster -ha -conf 
 </dependency>
 ```
 
+# 其他可能出现的问题
+
+## No handlers for address vertx.kue.service.job.internal
+
+1. 可能是 EventBus 上，真的没有注册到这个地址的服务。
+2. EventBus没有集群，所以找不到注册在这个地址上的服务。
