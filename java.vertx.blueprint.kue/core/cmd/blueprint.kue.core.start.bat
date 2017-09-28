@@ -1,0 +1,1 @@
+java -jar java.vertx.blueprint.kue.core-1.0-SNAPSHOT-fat.jar -cluster -ha -conf ./conf.json

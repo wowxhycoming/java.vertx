@@ -26,7 +26,7 @@ import java.util.function.Consumer;
 /**
  * Created by xuhuaiyu on 2017/6/6.
  */
-public class TodoVerticle extends AbstractVerticle{
+public class TodoVerticle extends AbstractVerticle {
 
     private static final String HTTP_HOST = "127.0.0.1";
     private static final int HTTP_PORT = 10032;

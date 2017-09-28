@@ -48,13 +48,13 @@ public class O5SubRouterOrder extends AbstractVerticle {
         // order 相等的， 按代码先后顺序
 
         server.requestHandler(router::accept)
-        .listen(config().getInteger("http.port", 10025), result -> {
-            if (result.succeeded()) {
-                fut.complete();
-            } else {
-                fut.fail(fut.cause());
-            }
-        });
+                .listen(config().getInteger("http.port", 10025), result -> {
+                    if (result.succeeded()) {
+                        fut.complete();
+                    } else {
+                        fut.fail(fut.cause());
+                    }
+                });
 
     }
 

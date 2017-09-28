@@ -52,6 +52,6 @@ public class MessageHandler implements Handler<RoutingContext> {
                 }
                 // 使用类的方式管理 handler
 //                MessageAsyncResult.create(routingContext.response())
-                );
+        );
     }
 }

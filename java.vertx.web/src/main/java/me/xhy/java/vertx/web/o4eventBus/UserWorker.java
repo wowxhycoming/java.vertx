@@ -11,11 +11,11 @@ public class UserWorker extends AbstractVerticle {
 
     /**
      * Consumer
-     *
+     * <p>
      * Consumer本身也是一个Vert.x中的Handler，但是它不可以独立发布到Vert.x中，而只能依赖Verticle实例，
      * 而Consumer通常会做很多后台工作，比如文件读写、网络访问、数据库读写等，那么这种情况下需要创建一个新的Verticle来处理，
      * 这个时候就可以使用Worker类型的Verticle实例直接在后台处理各种复杂工作。
-     *
+     * <p>
      * 注意：决定这个 Verticle 性质是在 deploy 过程。
      */
 

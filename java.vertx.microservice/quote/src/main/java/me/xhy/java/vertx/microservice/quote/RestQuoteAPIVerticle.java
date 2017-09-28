@@ -13,44 +13,44 @@ import java.util.Map;
  */
 public class RestQuoteAPIVerticle extends AbstractVerticle {
 
-	private Map<String, JsonObject> quotes = new HashMap<>();
+    private Map<String, JsonObject> quotes = new HashMap<>();
 
-	@Override
-	public void start() throws Exception {
-		vertx.eventBus().<JsonObject>consumer(GeneratorQuoteVerticle.ADDRESS)
-				.handler(message -> {
+    @Override
+    public void start() throws Exception {
+        vertx.eventBus().<JsonObject>consumer(GeneratorQuoteVerticle.ADDRESS)
+                .handler(message -> {
 
-					final JsonObject data = message.body();
-					quotes.put(data.getString("name"), data);
-					System.out.println("consumer--" + Thread.currentThread().getName() + "===" + data.toString());
+                    final JsonObject data = message.body();
+                    quotes.put(data.getString("name"), data);
+                    System.out.println("consumer--" + Thread.currentThread().getName() + "===" + data.toString());
 
-				});
+                });
 
-		vertx.createHttpServer()
-				.requestHandler(request -> {
-					HttpServerResponse response = request.response()
-							.putHeader("content-type", "application/json");
+        vertx.createHttpServer()
+                .requestHandler(request -> {
+                    HttpServerResponse response = request.response()
+                            .putHeader("content-type", "application/json");
 
-					String company = request.getParam("name");
-					if (null == company) {
-						String content = Json.encodePrettily(quotes);
-						response.end(content);
-					} else {
-						JsonObject quote = quotes.get(company);
-						if (null == quote) {
-							response.setStatusCode(404).end();
-						} else {
-							response.end(Json.encodePrettily(quote));
-						}
-					}
+                    String company = request.getParam("name");
+                    if (null == company) {
+                        String content = Json.encodePrettily(quotes);
+                        response.end(content);
+                    } else {
+                        JsonObject quote = quotes.get(company);
+                        if (null == quote) {
+                            response.setStatusCode(404).end();
+                        } else {
+                            response.end(Json.encodePrettily(quote));
+                        }
+                    }
 
-				}).listen(config().getInteger("http.port"), ar -> {
-					System.out.println(ar.succeeded());
-					if (ar.succeeded()) {
-						System.out.println("Server started");
-					} else {
-						System.out.println("Cannot start the server: " + ar.cause());
-					}
-				});
-	}
+                }).listen(config().getInteger("http.port"), ar -> {
+            System.out.println(ar.succeeded());
+            if (ar.succeeded()) {
+                System.out.println("Server started");
+            } else {
+                System.out.println("Cannot start the server: " + ar.cause());
+            }
+        });
+    }
 }

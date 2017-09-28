@@ -5,7 +5,8 @@ package me.xhy.java.vertx.blueprint.todo.constant;
  */
 public final class Constants {
 
-    private Constants() {}
+    private Constants() {
+    }
 
     /**
      * API Route

@@ -1,0 +1,1 @@
+java -jar java.vertx.blueprint.kue.http-1.0-SNAPSHOT-fat.jar -conf conf.json

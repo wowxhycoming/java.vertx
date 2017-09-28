@@ -154,7 +154,7 @@ public class JdbcTodoService implements TodoService {
                     System.out.println("compose handler");
 
                     // 如果获取连接成功了，在这里关闭连接
-                    if(connFuture.succeeded()) {
+                    if (connFuture.succeeded()) {
                         SQLConnection sqlConnection = connFuture.result();
                         System.out.println(sqlConnection);
                         sqlConnection.close();

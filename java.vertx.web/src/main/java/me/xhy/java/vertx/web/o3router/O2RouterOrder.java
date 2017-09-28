@@ -29,13 +29,13 @@ public class O2RouterOrder extends AbstractVerticle {
         router.route("/path/*").order(0).handler(new EndHandler());
 
         server.requestHandler(router::accept)
-        .listen(config().getInteger("http.port", 10022), result -> {
-            if (result.succeeded()) {
-                fut.complete();
-            } else {
-                fut.fail(fut.cause());
-            }
-        });
+                .listen(config().getInteger("http.port", 10022), result -> {
+                    if (result.succeeded()) {
+                        fut.complete();
+                    } else {
+                        fut.fail(fut.cause());
+                    }
+                });
 
     }
 

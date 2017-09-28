@@ -67,7 +67,7 @@ public class SingleApplicationVerticle extends AbstractVerticle {
 
         vertx.createHttpServer() // <4>
                 .requestHandler(router::accept)
-                .listen(config().getInteger("http.port",HTTP_PORT), HTTP_HOST, result -> {
+                .listen(config().getInteger("http.port", HTTP_PORT), HTTP_HOST, result -> {
                     if (result.succeeded())
                         future.complete();
                     else
@@ -97,6 +97,7 @@ public class SingleApplicationVerticle extends AbstractVerticle {
 
     /**
      * 获取/获取所有待办事项
+     *
      * @param context
      */
     private void handleGetTodo(RoutingContext context) {
@@ -150,6 +151,7 @@ public class SingleApplicationVerticle extends AbstractVerticle {
 
     /**
      * 创建待办事项
+     *
      * @param context
      */
     private void handleCreateTodo(RoutingContext context) {
@@ -173,6 +175,7 @@ public class SingleApplicationVerticle extends AbstractVerticle {
 
     /**
      * 更新待办事项
+     *
      * @param context
      */
     private void handleUpdateTodo(RoutingContext context) {

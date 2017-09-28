@@ -55,11 +55,7 @@ public class CallbackHell implements Handler<RoutingContext> {
         /**
          * future.completer() 返回 Handler<AsyncResult<T>> 对象
          */
-        bus.<Boolean>send("MSG://QUEUE/USER", user.tojson(),future.completer());
-
-
-
-
+        bus.<Boolean>send("MSG://QUEUE/USER", user.tojson(), future.completer());
 
 
     }

@@ -26,7 +26,7 @@ public class JDBCApplicationMain {
         final VertxFactory vertxFactory = new VertxFactoryImpl();
         final Vertx vertx = vertxFactory.vertx();
 
-        vertx.deployVerticle(TodoVerticle.class.getName(),jdbcVertxOptions);
+        vertx.deployVerticle(TodoVerticle.class.getName(), jdbcVertxOptions);
 
     }
 }

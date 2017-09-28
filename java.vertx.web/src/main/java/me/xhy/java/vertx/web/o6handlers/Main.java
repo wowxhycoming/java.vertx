@@ -28,10 +28,10 @@ public class Main {
 
 
         vertx.deployVerticle(RouterVerticle.class.getName(), Options.standardDeploymentOptions().setInstances(1), res -> {
-            if(res.succeeded()) {
+            if (res.succeeded()) {
                 final String deploymentId = res.result();
                 System.out.println("DeploymentId = " + deploymentId);
-                if(null != deploymentId) {
+                if (null != deploymentId) {
                     vertx.undeploy(deploymentId, new UndeployHandler());
 
                     try {

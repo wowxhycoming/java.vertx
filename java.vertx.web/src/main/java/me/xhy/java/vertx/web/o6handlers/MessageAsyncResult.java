@@ -8,7 +8,7 @@ import io.vertx.core.http.HttpServerResponse;
 
 /**
  * Created by xuhuaiyu on 2017/5/28.
- *
+ * <p>
  * o4.MessageAsyncResult 调用 send 的最后一个参数，可以传入该值 MessageAsyncResult.create(...)
  */
 public class MessageAsyncResult implements Handler<AsyncResult<Message<Boolean>>> {

@@ -91,7 +91,9 @@
                                     <manifestEntries>
                                         <Main-Class>io.vertx.core.Launcher</Main-Class>
                                         <!--<Main-Verticle>me.xhy.java.vertx.blueprint.s1single.verticle.SingleApplicationVerticle</Main-Verticle>-->
-                                        <Main-Verticle>me.xhy.java.vertx.me.xhy.java.vertx.blueprint.todo.s2multi.verticle.TodoVerticle</Main-Verticle>
+                                        <Main-Verticle>
+                                            me.xhy.java.vertx.me.xhy.java.vertx.blueprint.todo.s2multi.verticle.TodoVerticle
+                                        </Main-Verticle>
                                     </manifestEntries>
                                 </transformer>
                             </transformers>

@@ -16,12 +16,12 @@ public class RedisApplicationMain {
 
         // java -jar java.vertx.blueprint-1.0-SNAPSHOT-fat.jar (-conf ./config_redis.json)
         final DeploymentOptions redisVertxOptions =
-                new DeploymentOptions().setConfig(new JsonObject().put("service.type","redis"));
+                new DeploymentOptions().setConfig(new JsonObject().put("service.type", "redis"));
 
         final VertxFactory vertxFactory = new VertxFactoryImpl();
         final Vertx vertx = vertxFactory.vertx();
 
-        vertx.deployVerticle(TodoVerticle.class.getName(),redisVertxOptions);
+        vertx.deployVerticle(TodoVerticle.class.getName(), redisVertxOptions);
 
     }
 }

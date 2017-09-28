@@ -8,14 +8,14 @@ import io.vertx.core.DeploymentOptions;
  */
 public class MainVerticle extends AbstractVerticle {
 
-  @Override
-  public void start() throws Exception {
+    @Override
+    public void start() throws Exception {
 
-    // Java traders
-    vertx.deployVerticle(JavaCompulsiveTraderVerticle.class.getName(), new DeploymentOptions().setInstances(2));
+        // Java traders
+        vertx.deployVerticle(JavaCompulsiveTraderVerticle.class.getName(), new DeploymentOptions().setInstances(2));
 
-    // Groovy traders...
+        // Groovy traders...
 //    vertx.deployVerticle("GroovyCompulsiveTraderVerticle.groovy");
 
-  }
+    }
 }
