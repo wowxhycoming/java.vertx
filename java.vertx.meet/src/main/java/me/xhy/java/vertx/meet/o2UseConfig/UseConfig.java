@@ -9,19 +9,19 @@ import io.vertx.core.Future;
 
 public class UseConfig extends AbstractVerticle {
 
-    @Override
-    public void start(Future<Void> fut) {
-        vertx.createHttpServer()
-                .requestHandler(r -> {
-                    r.response().end("<h1>Use Config</h1>");
-                })
-                .listen(config().getInteger("http.port", 10002), result -> {
-                    if (result.succeeded()) {
-                        fut.complete();
-                    } else {
-                        fut.fail(fut.cause());
-                    }
-                });
-    }
+  @Override
+  public void start(Future<Void> fut) {
+    vertx.createHttpServer()
+        .requestHandler(r -> {
+          r.response().end("<h1>Use Config</h1>");
+        })
+        .listen(config().getInteger("http.port", 10002), result -> {
+          if (result.succeeded()) {
+            fut.complete();
+          } else {
+            fut.fail(fut.cause());
+          }
+        });
+  }
 
 }

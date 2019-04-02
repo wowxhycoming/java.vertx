@@ -8,18 +8,18 @@ import io.vertx.ext.web.RoutingContext;
  */
 public class SubRouter2Handler implements Handler<RoutingContext> {
 
-    String name = "";
+  String name = "";
 
-    public SubRouter2Handler() {
-    }
+  public SubRouter2Handler() {
+  }
 
-    public SubRouter2Handler(String name) {
-        this.name = "-" + name + "-";
-    }
+  public SubRouter2Handler(String name) {
+    this.name = "-" + name + "-";
+  }
 
-    @Override
-    public void handle(final RoutingContext event) {
-        System.out.println("[SubRouter 2]" + name + Thread.currentThread().getName());
-        event.next();
-    }
+  @Override
+  public void handle(final RoutingContext event) {
+    System.out.println("[SubRouter 2]" + name + Thread.currentThread().getName());
+    event.next();
+  }
 }

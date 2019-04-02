@@ -9,12 +9,12 @@ import io.vertx.core.spi.VertxFactory;
  */
 public class Main {
 
-    public static void main(String[] args) {
+  public static void main(String[] args) {
 
-        final VertxFactory vertxFactory = new VertxFactoryImpl();
-        final Vertx vertx = vertxFactory.vertx();
+    final VertxFactory vertxFactory = new VertxFactoryImpl();
+    final Vertx vertx = vertxFactory.vertx();
 
-        vertx.deployVerticle(SingleApplicationVerticle.class.getName());
+    vertx.deployVerticle(SingleApplicationVerticle.class.getName());
 
-    }
+  }
 }

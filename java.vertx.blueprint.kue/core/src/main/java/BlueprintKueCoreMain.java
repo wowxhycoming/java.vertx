@@ -15,7 +15,7 @@ import me.xhy.java.vertx.blueprint.kue.core.queue.KueVerticle;
  */
 public class BlueprintKueCoreMain {
 
-    public static void main(String[] args) {
+  public static void main(String[] args) {
 
         /*
         // 非集群运行
@@ -25,21 +25,21 @@ public class BlueprintKueCoreMain {
         vertx.deployVerticle(KueVerticle.class.getName());
         */
 
-        final ClusterManager clusterManager = new HazelcastClusterManager(new Config());
+    final ClusterManager clusterManager = new HazelcastClusterManager(new Config());
 
-        final VertxOptions vertxOpts = new VertxOptions();
-        vertxOpts.setClustered(true);
-        vertxOpts.setClusterHost("127.0.0.1");
-        vertxOpts.setClusterPort(4051);
-        vertxOpts.setClusterManager(clusterManager);
+    final VertxOptions vertxOpts = new VertxOptions();
+    vertxOpts.setClustered(true);
+    vertxOpts.setClusterHost("127.0.0.1");
+    vertxOpts.setClusterPort(4051);
+    vertxOpts.setClusterManager(clusterManager);
 
-        final VertxFactory vertxFactory = new VertxFactoryImpl();
+    final VertxFactory vertxFactory = new VertxFactoryImpl();
 
-        vertxFactory.clusteredVertx(vertxOpts, resultHandler -> {
-            if (resultHandler.succeeded()) {
-                final Vertx vertx = resultHandler.result();
-                vertx.deployVerticle(KueVerticle.class.getName());
-            }
-        });
-    }
+    vertxFactory.clusteredVertx(vertxOpts, resultHandler -> {
+      if (resultHandler.succeeded()) {
+        final Vertx vertx = resultHandler.result();
+        vertx.deployVerticle(KueVerticle.class.getName());
+      }
+    });
+  }
 }

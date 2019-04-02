@@ -9,23 +9,23 @@ import io.vertx.ext.web.RoutingContext;
  */
 public class BroadcastingHandler implements Handler<RoutingContext> {
 
-    @Override
-    public void handle(RoutingContext event) {
+  @Override
+  public void handle(RoutingContext event) {
 
-        System.out.println("[publish]" + Thread.currentThread().getName());
+    System.out.println("[publish]" + Thread.currentThread().getName());
 
-        String name = event.pathParam("name");
-        String email = event.pathParam("email");
+    String name = event.pathParam("name");
+    String email = event.pathParam("email");
 
-        final User user = new User();
-        user.setName(name);
-        user.setEmail(email);
+    final User user = new User();
+    user.setName(name);
+    user.setEmail(email);
 
-        final EventBus eventBus = event.vertx().eventBus();
+    final EventBus eventBus = event.vertx().eventBus();
 
-        eventBus.publish("MSG://PUBLISH/USER", user.tojson());
+    eventBus.publish("MSG://PUBLISH/USER", user.tojson());
 
 
-    }
+  }
 
 }

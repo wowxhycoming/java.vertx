@@ -262,7 +262,7 @@ function request(url, fn) {
     }
 
     fn = fn || function () {
-        };
+    };
 
     o.ajax({type: method, url: url})
         .success(function (res) {

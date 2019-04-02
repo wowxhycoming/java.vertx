@@ -19,32 +19,32 @@ import me.xhy.java.vertx.blueprint.kue.core.util.RedisHelper;
  */
 public class KueVerticle extends AbstractVerticle {
 
-    private static Logger logger = LoggerFactory.getLogger(Job.class);
+  private static Logger logger = LoggerFactory.getLogger(Job.class);
 
-    public static final String EB_JOB_SERVICE_ADDRESS = "vertx.kue.service.job.internal";
+  public static final String EB_JOB_SERVICE_ADDRESS = "vertx.kue.service.job.internal";
 
-    private JsonObject config;
-    private JobService jobService;
+  private JsonObject config;
+  private JobService jobService;
 
-    @Override
-    public void start(Future<Void> future) throws Exception {
-        this.config = config();
-        this.jobService = JobService.create(vertx, config);
-        // create redis client
-        RedisClient redisClient = RedisHelper.client(vertx, config);
-        redisClient.ping(pr -> { // test connection
-            if (pr.succeeded()) {
-                logger.info("Kue Verticle is running...");
+  @Override
+  public void start(Future<Void> future) throws Exception {
+    this.config = config();
+    this.jobService = JobService.create(vertx, config);
+    // create redis client
+    RedisClient redisClient = RedisHelper.client(vertx, config);
+    redisClient.ping(pr -> { // test connection
+      if (pr.succeeded()) {
+        logger.info("Kue Verticle is running...");
 
-                // register job service
-                ProxyHelper.registerService(JobService.class, vertx, jobService, EB_JOB_SERVICE_ADDRESS);
+        // register job service
+        ProxyHelper.registerService(JobService.class, vertx, jobService, EB_JOB_SERVICE_ADDRESS);
 
-                future.complete();
-            } else {
-                logger.error("oops!", pr.cause());
-                future.fail(pr.cause());
-            }
-        });
-    }
+        future.complete();
+      } else {
+        logger.error("oops!", pr.cause());
+        future.fail(pr.cause());
+      }
+    });
+  }
 
 }
