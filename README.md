@@ -3,3 +3,4 @@
 3. java.vertx.blueprint.todo , a rest web project (10301)
 4. java.vertx.blueprint.kue (10401)
 5. java.vertx.microservice (10501)
+6. java.vertx.blueprint.microservice (10601)

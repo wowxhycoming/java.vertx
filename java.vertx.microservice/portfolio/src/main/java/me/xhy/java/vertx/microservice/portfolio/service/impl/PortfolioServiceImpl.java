@@ -96,6 +96,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 
   @Override
   public void buy(int amount, JsonObject quote, Handler<AsyncResult<Portfolio>> resultHandler) {
+    System.out.println("buy :" + quote);
     if (amount <= 0) {
       resultHandler.handle(Future.failedFuture("Cannot buy " + quote.getString("name") + " - the amount must be " +
           "greater than 0"));
@@ -126,6 +127,7 @@ public class PortfolioServiceImpl implements PortfolioService {
 
   @Override
   public void sell(int amount, JsonObject quote, Handler<AsyncResult<Portfolio>> resultHandler) {
+    System.out.println("sell :" + quote);
     if (amount <= 0) {
       resultHandler.handle(Future.failedFuture("Cannot sell " + quote.getString("name") + " - the amount must be " +
           "greater than 0"));
