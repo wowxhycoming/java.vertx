@@ -12,23 +12,23 @@ import me.xhy.java.vertx.web.util.Options;
  */
 public class Main {
 
-    public static void main(final String... args) {
+  public static void main(final String... args) {
 
-        System.out.println(Runtime.getRuntime().availableProcessors());
+    System.out.println(Runtime.getRuntime().availableProcessors());
 
-        final VertxOptions vertxOptions = Options.getVertxOptions("VXWEB.");
-        final VertxFactory factory = new VertxFactoryImpl();
-        final Vertx vertx = factory.vertx(vertxOptions);
-        final DeploymentOptions verticleOpts = Options.standardDeploymentOptions();
+    final VertxOptions vertxOptions = Options.getVertxOptions("VXWEB.");
+    final VertxFactory factory = new VertxFactoryImpl();
+    final Vertx vertx = factory.vertx(vertxOptions);
+    final DeploymentOptions verticleOpts = Options.standardDeploymentOptions();
 
-        vertx.deployVerticle(O1Router.class.getName(), verticleOpts);
-        vertx.deployVerticle(O2RouterOrder.class.getName(), verticleOpts);
-        vertx.deployVerticle(O3BlockingHandler.class.getName(), verticleOpts);
-        vertx.deployVerticle(O4SubRouter.class.getName(), verticleOpts);
-        vertx.deployVerticle(O5SubRouterOrder.class.getName(), verticleOpts);
-        vertx.deployVerticle(O6ReRouter.class.getName(), verticleOpts);
-        vertx.deployVerticle(O7FailureHandler.class.getName(), verticleOpts);
+    vertx.deployVerticle(O1Router.class.getName(), verticleOpts);
+    vertx.deployVerticle(O2RouterOrder.class.getName(), verticleOpts);
+    vertx.deployVerticle(O3BlockingHandler.class.getName(), verticleOpts);
+    vertx.deployVerticle(O4SubRouter.class.getName(), verticleOpts);
+    vertx.deployVerticle(O5SubRouterOrder.class.getName(), verticleOpts);
+    vertx.deployVerticle(O6ReRouter.class.getName(), verticleOpts);
+    vertx.deployVerticle(O7FailureHandler.class.getName(), verticleOpts);
 
-    }
+  }
 
 }

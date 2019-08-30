@@ -1,20 +1,5 @@
 = Enums
 
-[[JobState]]
-== JobState
-
-
-[cols=">25%,75%"]
-[frame="topbot"]
-|===
-^|Name | Description
-|[[INACTIVE]]`INACTIVE`|-
-|[[ACTIVE]]`ACTIVE`|-
-|[[COMPLETE]]`COMPLETE`|-
-|[[FAILED]]`FAILED`|-
-|[[DELAYED]]`DELAYED`|-
-|===
-
 [[Priority]]
 == Priority
 

@@ -8,9 +8,9 @@ import io.vertx.ext.web.RoutingContext;
  */
 public class OccurErrorHandler implements Handler<RoutingContext> {
 
-    @Override
-    public void handle(final RoutingContext routingContext) {
-        System.out.println("[OccurErrorHandler]" + Thread.currentThread().getName());
-        routingContext.fail(401);
-    }
+  @Override
+  public void handle(final RoutingContext routingContext) {
+    System.out.println("[OccurErrorHandler]" + Thread.currentThread().getName());
+    routingContext.fail(401);
+  }
 }

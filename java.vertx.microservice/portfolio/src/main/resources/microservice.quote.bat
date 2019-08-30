@@ -1,0 +1,1 @@
+java -jar java.vertx.microservice.portfolio-1.0-SNAPSHOT-fat.jar -cluster -ha

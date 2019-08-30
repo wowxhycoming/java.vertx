@@ -9,7 +9,8 @@
     - Vert.x Event Bus 的几种事件机制（发布/订阅、点对点模式）
     - 设计 分布式 的Vert.x应用
     - Vert.x Service Proxy（服务代理，即异步RPC）的运用，在 Event Bus 上发布代理
-    
+5. java.vertx.microservice (10501)
+6. java.vertx.blueprint.microservice (10601)    
     > 没有把 service consumer 和 service provider 从物理结构上分开，必须在一个项目里，很low很不适很不解。
     因为 consumer 必须持有 provider interface 引用，而 interface 还直接引用了 impl 创建服务实例 和 服务代理。
     consumer 必须跟 provider interface 在一个项目， provider interface 必须跟 impl 在一个项目，意义呢？

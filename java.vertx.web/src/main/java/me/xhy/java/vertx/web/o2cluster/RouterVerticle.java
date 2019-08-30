@@ -8,17 +8,17 @@ import io.vertx.core.http.HttpServer;
  */
 public class RouterVerticle extends AbstractVerticle {
 
-    @Override
-    public void start() {
-        final HttpServer server = vertx.createHttpServer();
+  @Override
+  public void start() {
+    final HttpServer server = vertx.createHttpServer();
 
-        System.out.println("部署：" + Thread.currentThread().getName());
+    System.out.println("部署：" + Thread.currentThread().getName());
 
-        server.requestHandler(request -> {
-            System.out.println("Handler:" + Thread.currentThread().getName());
-            request.response().end("The Cluster Vert.x Web Demo");
-        });
+    server.requestHandler(request -> {
+      System.out.println("Handler:" + Thread.currentThread().getName());
+      request.response().end("The Cluster Vert.x Web Demo");
+    });
 
-        server.listen(config().getInteger("http.port"));
-    }
+    server.listen(config().getInteger("http.port"));
+  }
 }

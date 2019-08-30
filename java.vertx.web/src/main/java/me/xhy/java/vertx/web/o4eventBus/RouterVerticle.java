@@ -10,28 +10,28 @@ import io.vertx.ext.web.Router;
  */
 public class RouterVerticle extends AbstractVerticle {
 
-    @Override
-    public void start(final Future future) {
+  @Override
+  public void start(final Future future) {
 
-        System.out.println("[standard]" + Thread.currentThread().getName());
+    System.out.println("[standard]" + Thread.currentThread().getName());
 
-        final HttpServer server = vertx.createHttpServer();
+    final HttpServer server = vertx.createHttpServer();
 
-        Router router = Router.router(vertx);
+    Router router = Router.router(vertx);
 
-        // 用于 Request/Response 模式
-        router.route("/message/:name/:email").handler(new MessageHandler());
+    // 用于 Request/Response 模式
+    router.route("/message/:name/:email").handler(new MessageHandler());
 
-        // 用于 Publish/Subscribe 模式
-        router.route("/publish/:name/:email").handler(new BroadcastingHandler());
+    // 用于 Publish/Subscribe 模式
+    router.route("/publish/:name/:email").handler(new BroadcastingHandler());
 
-        server.requestHandler(router::accept)
-                .listen(config().getInteger("http.port", 10031), result -> {
-                    if (result.succeeded()) {
-                        future.complete();
-                    } else {
-                        future.fail(result.cause());
-                    }
-                });
-    }
+    server.requestHandler(router::accept)
+        .listen(config().getInteger("http.port", 10031), result -> {
+          if (result.succeeded()) {
+            future.complete();
+          } else {
+            future.fail(result.cause());
+          }
+        });
+  }
 }

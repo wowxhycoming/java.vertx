@@ -15,16 +15,16 @@ import java.nio.file.Files;
  */
 public class MainVerticle {
 
-    public static void main(String[] args) throws IOException {
+  public static void main(String[] args) throws IOException {
 
-        final VertxFactory vertxFactory = new VertxFactoryImpl();
-        final Vertx vertx = vertxFactory.vertx();
+    final VertxFactory vertxFactory = new VertxFactoryImpl();
+    final Vertx vertx = vertxFactory.vertx();
 
-        byte[] bytes = Files.readAllBytes(new File("java.vertx.microservice/quote/src/main/resources/config.json").toPath());
-        JsonObject config = new JsonObject(new String(bytes, "UTF-8"));
+    byte[] bytes = Files.readAllBytes(new File("java.vertx.microservice/quote/src/main/resources/config.json").toPath());
+    JsonObject config = new JsonObject(new String(bytes, "UTF-8"));
 
-        vertx.deployVerticle(GeneratorQuoteVerticle.class.getName(), new DeploymentOptions().setConfig(config));
+    vertx.deployVerticle(QuoteDeploymentVerticle.class.getName(), new DeploymentOptions().setConfig(config));
 
-    }
+  }
 
 }

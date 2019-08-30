@@ -11,17 +11,17 @@ import java.util.Optional;
  */
 public interface TodoService {
 
-    Future<Boolean> initData(); // 初始化数据（或数据库）
+  Future<Boolean> initData(); // 初始化数据（或数据库）
 
-    Future<Boolean> insert(Todo todo);
+  Future<Boolean> insert(Todo todo);
 
-    Future<List<Todo>> getAll();
+  Future<List<Todo>> getAll();
 
-    Future<Optional<Todo>> getCertain(String todoID);
+  Future<Optional<Todo>> getCertain(String todoID);
 
-    Future<Todo> update(String todoId, Todo newTodo);
+  Future<Todo> update(String todoId, Todo newTodo);
 
-    Future<Boolean> delete(String todoId);
+  Future<Boolean> delete(String todoId);
 
-    Future<Boolean> deleteAll();
+  Future<Boolean> deleteAll();
 }

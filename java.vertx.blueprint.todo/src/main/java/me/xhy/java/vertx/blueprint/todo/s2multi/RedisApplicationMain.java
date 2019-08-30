@@ -12,16 +12,16 @@ import me.xhy.java.vertx.blueprint.todo.s2multi.verticle.TodoVerticle;
  */
 public class RedisApplicationMain {
 
-    public static void main(String[] args) {
+  public static void main(String[] args) {
 
-        // java -jar java.vertx.blueprint-1.0-SNAPSHOT-fat.jar (-conf ./config_redis.json)
-        final DeploymentOptions redisVertxOptions =
-                new DeploymentOptions().setConfig(new JsonObject().put("service.type", "redis"));
+    // java -jar java.vertx.blueprint-1.0-SNAPSHOT-fat.jar (-conf ./config_redis.json)
+    final DeploymentOptions redisVertxOptions =
+        new DeploymentOptions().setConfig(new JsonObject().put("service.type", "redis"));
 
-        final VertxFactory vertxFactory = new VertxFactoryImpl();
-        final Vertx vertx = vertxFactory.vertx();
+    final VertxFactory vertxFactory = new VertxFactoryImpl();
+    final Vertx vertx = vertxFactory.vertx();
 
-        vertx.deployVerticle(TodoVerticle.class.getName(), redisVertxOptions);
+    vertx.deployVerticle(TodoVerticle.class.getName(), redisVertxOptions);
 
-    }
+  }
 }

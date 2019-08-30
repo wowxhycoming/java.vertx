@@ -1,5 +1,5 @@
 {
-  "http.port": 8080,
+  "http.port": 10501,
   "companies": [
     {
       "name": "MacroHard",
@@ -7,7 +7,7 @@
       "volume": 100000,
       "price": 600,
       "variation": 200,
-      "period": 3000
+      "period": 30000
     },
     {
       "name": "Divinator",
@@ -15,7 +15,7 @@
       "volume": 500000,
       "price": 800,
       "variation": 50,
-      "period": 4000
+      "period": 40000
     },
     {
       "name": "Black Coat",
@@ -23,7 +23,7 @@
       "volume": 90000,
       "price": 300,
       "variation": 150,
-      "period": 5000
+      "period": 50000
     }
   ]
 }
