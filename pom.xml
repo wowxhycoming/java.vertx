@@ -18,7 +18,7 @@
     </modules>
 
     <properties>
-        <vertx.version>3.4.2</vertx.version>
+        <vertx.version>3.5.4</vertx.version>
         <jackson.version>2.8.8</jackson.version>
     </properties>
 
@@ -95,6 +95,12 @@
             <dependency>
                 <groupId>io.vertx</groupId>
                 <artifactId>vertx-web-templ-jade</artifactId>
+                <version>${vertx.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>io.vertx</groupId>
+                <artifactId>vertx-zookeeper</artifactId>
                 <version>${vertx.version}</version>
             </dependency>
 
