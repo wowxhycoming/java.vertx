@@ -145,6 +145,17 @@ public class JdbcTodoService implements TodoService {
          compose 永远返回第二个参数
          无论调用 compose 的 Future 是否成功，最终都会执行 compose 内参数的 Handler ，因为都有结果了，所要把逻辑放到 compose 的第一个参数中
          */
+
+        /*
+        Future resFuture = Future.future();
+          aFuture.compose(aHandler, resFuture)
+          .compose(bHandler, resFuture)
+          .setHandler(res -> null);
+
+          resFuture.setHandler(a -> null);
+
+         不要这样从前到后用一个Future，resFuture只有一个，resFuture只能用一次，谁先抢到先执行，其他的handler和compose都无法执行了。
+         */
     // 如果获取连接成功了，下面 compose 中每一个 SQLConnection 对象的引用地址都是相同的，没有重复创建对象，传递了引用
     // compose 链最后的 setHandler 是一定会执行的，对上面成功申请的资源进行关闭
     // 异常处理 : vertx 不会因为异常用户的中断程序
