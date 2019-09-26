@@ -140,6 +140,7 @@ public class JdbcTodoService implements TodoService {
 
         /* compose 流程
          compose 前面的 Future 如果成功了，将被传递给第一个参数，然后把第一个参数的执行结果放到第二个参数中；（handler 可见 第二个参数，直接放入操作结果）
+                                PS：重要： 一定要在 handler中给Future赋值，否则，Future为空，下个compose不会执行。
                               如果失败了，将被传递给第二个参数
          compose 永远返回第二个参数
          无论调用 compose 的 Future 是否成功，最终都会执行 compose 内参数的 Handler ，因为都有结果了，所要把逻辑放到 compose 的第一个参数中
